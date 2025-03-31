@@ -1,0 +1,30 @@
+body{
+    background-color: #cfcfcf;
+    display: flex;
+}
+
+.dropBox {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 1px dashed #000;
+    margin: 20px;
+}
+
+.draggableItem {
+    width: 90px;
+    height: 90px;
+    background-color: #000;
+}
+
+.draggableItem:hover{
+    cursor: grab;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}

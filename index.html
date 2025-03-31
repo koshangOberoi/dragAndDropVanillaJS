@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Drag & Drop demo</title>
+</head>
+<body>
+    <div class="dropBox">
+        <div class="draggableItem" draggable="true"></div>
+    </div>
+    <div class="dropBox"></div>
+    <div class="dropBox"></div>
+    <div class="dropBox"></div>
+    <div class="dropBox"></div>
+    <script>
+        const item = document.getElementsByClassName('draggableItem')[0];
+        let droppedPosition = 0;
+        let currPosition = 0;
+        console.log(item);
+        item.addEventListener('dragstart', () =>{
+            console.log('dragging');
+            setTimeout(()=>{
+                item.classList.remove('show');
+                item.classList.add('hide');
+            }, 0)
+        })
+        item.addEventListener('dragend', ()=>{
+            console.log('stopped dragging');
+            item.classList.remove('hide');
+            item.classList.add('show');
+            if(droppedPosition !== currPosition){
+                dropBoxes[droppedPosition].appendChild(item);
+            }
+        })
+        const dropBoxes = document.getElementsByClassName('dropBox');
+        for(let i = 0; i < dropBoxes.length; ++i){
+            dropBoxes[i].addEventListener('dragenter', (event)=>{
+                event.preventDefault();
+                console.log('entered dropzone: ' + i);
+                droppedPosition = i;
+            })
+            dropBoxes[i].addEventListener('dragleave', (event)=>{
+                event.preventDefault();
+                console.log('exit dropzone: ' + i);
+            })
+        }
+    </script>
+</body>
+</html>
